@@ -1,4 +1,5 @@
 import { safeFetch } from './utils/safe-fetch.js'
+import { EmbedBuilder } from './EmbedBuilder.js'
 
 export class DiscordChannel {
   /** @type {Webhook} */
@@ -33,7 +34,7 @@ export class DiscordChannel {
   }
 
   /**
-   * @param {Partial<EmbedBody>} embed
+   * @param {EmbedBuilder} embed
    */
   async sendEmbed(embed) {
     const body = {

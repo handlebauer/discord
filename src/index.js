@@ -83,8 +83,6 @@ export class Discord {
       headers: { 'content-type': 'application/json' },
     }
 
-    console.log(init)
-
     await safeFetch(this.#webhooks[channel].url, init)
 
     return true
