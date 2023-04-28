@@ -29,14 +29,7 @@ export class Discord {
    */
   addWebhook(channel, url, { username, avatar } = {}) {
     this.#webhooks = { ...this.#webhooks, [channel]: { url, username, avatar } }
-  }
-
-  /**
-   * @param {string} channel
-   */
-  channel(channel) {
-    this.#validateChannel(channel)
-    return new DiscordChannel(this.#webhooks[channel])
+    return new DiscordChannel({ url, username, avatar })
   }
 
   /**
