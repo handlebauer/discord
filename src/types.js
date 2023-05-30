@@ -3,7 +3,7 @@
  * url: string
  * username: string
  * avatar: string
- * }} Webhook
+ * }} Channel
  */
 
 /**
@@ -20,3 +20,5 @@
  * fields: { name: string, value: string, inline?: boolean }[]
  * }} EmbedBody
  */
+
+export {}

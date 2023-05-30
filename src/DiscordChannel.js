@@ -1,15 +1,30 @@
 import { safeFetch } from './utils/safe-fetch.js'
 import { EmbedBuilder } from './EmbedBuilder.js'
 
+/**
+ * @typedef {import('./types.js').Channel} Channel
+ */
+
+/**
+ * @template {string} Name
+ */
 export class DiscordChannel {
-  /** @type {Webhook} */
-  #webhook
+  /** @type {string} */
+  #SECRET_URL
 
   /**
-   * @param {Webhook} webhook
+   * @param {Channel} channel
    */
-  constructor(webhook) {
-    this.#webhook = webhook
+  constructor(channel) {
+    if (channel.url == null) {
+      throw new Error(`A webhook URL must be defined (found: ${channel.url})`)
+    }
+
+    this.#SECRET_URL = channel.url
+
+    this.url = channel.url.split('/').at(-1).slice(0, 9) + '...'
+    this.username = channel.username || null
+    this.avatar = channel.avatar || null
   }
 
   /**
@@ -17,8 +32,8 @@ export class DiscordChannel {
    */
   async send(content) {
     const body = {
-      username: this.#webhook.username,
-      avatar_url: this.#webhook.avatar,
+      username: this.username,
+      avatar_url: this.avatar,
       content,
     }
 
@@ -28,7 +43,7 @@ export class DiscordChannel {
       body: JSON.stringify(body),
     }
 
-    await safeFetch(this.#webhook.url, init)
+    await safeFetch(this.#SECRET_URL, init)
 
     return true
   }
@@ -38,8 +53,8 @@ export class DiscordChannel {
    */
   async sendEmbed(embed) {
     const body = {
-      username: this.#webhook.username,
-      avatar_url: this.#webhook.avatar,
+      username: this.username,
+      avatar_url: this.avatar,
       content: '',
       embeds: [embed],
     }
@@ -50,8 +65,7 @@ export class DiscordChannel {
       headers: { 'content-type': 'application/json' },
     }
 
-    console.log(init)
-    await safeFetch(this.#webhook.url, init)
+    await safeFetch(this.#SECRET_URL, init)
 
     return true
   }

@@ -3,15 +3,17 @@
   "version": "0.2.0",
   "type": "module",
   "exports": {
-    "import": "./lib/index.mjs",
-    "require": "./lib/index.cjs"
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    }
   },
   "module": "./lib/index.mjs",
   "main": "./lib/index.cjs",
-  "types": "types/index.d.ts",
+  "types": "./lib/index.d.ts",
   "files": [
-    "lib",
-    "types"
+    "lib"
   ],
   "author": "Donald Geddes",
   "licence": "MIT",
@@ -24,9 +26,10 @@
     "extends": "@hbauer/eslint-config"
   },
   "scripts": {
-    "build": "shx rm -rf ./lib && rollup -c",
-    "types": "shx rm -rf ./types && tsc -p jsconfig.json",
-    "prepublishOnly": "npm run types && npm run build",
+    "build": "rollup -c",
+    "types": "tsc -p jsconfig.json",
+    "clean": "shx rm -rf ./lib",
+    "prepublishOnly": "npm run clean && npm run types && npm run build",
     "test": "ava",
     "prepare": "husky install"
   },
@@ -42,5 +45,9 @@
     "rollup": "^3.21.0",
     "shx": "^0.3.4",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@hbauer/convenience-functions": "^0.35.2",
+    "remeda": "^1.19.0"
   }
 }

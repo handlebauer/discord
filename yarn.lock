@@ -244,6 +244,13 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.39.0.tgz#58b536bcc843f4cd1e02a7e6171da5c040f4d44b"
   integrity sha512-kf9RB0Fg7NZfap83B3QOqOGg9QmD9yBudqQXzzOtn3i4y7ZUXe5ONeW34Gwi+TxhH4mvj72R1Zc300KUMa9Bng==
 
+"@hbauer/convenience-functions@^0.35.2":
+  version "0.35.2"
+  resolved "https://registry.yarnpkg.com/@hbauer/convenience-functions/-/convenience-functions-0.35.2.tgz#d9cf1dfb7b0ae6f39e99ac59a895f53400beab3d"
+  integrity sha512-cBmwxeMPy8QrZb0IuMX6+pO0eXN7E9Ilj7nmiuYWPfp2E7BfHVtFmQp7glbMKkqm30OtxEigeQBbWG/qS0nbMQ==
+  dependencies:
+    remeda "^1.14.0"
+
 "@hbauer/eslint-config@^1.5.3":
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@hbauer/eslint-config/-/eslint-config-1.5.3.tgz#0830e9f12716c9a2dfac70f3eb7d31d7049a83d1"
@@ -2044,6 +2051,11 @@ regexp.prototype.flags@^1.4.3:
     call-bind "^1.0.2"
     define-properties "^1.2.0"
     functions-have-names "^1.2.3"
+
+remeda@^1.14.0, remeda@^1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/remeda/-/remeda-1.19.0.tgz#bacbd0fae72ee15bf8c7f759e7c7369ce054acea"
+  integrity sha512-iwZohiXDhC1K+adRI6OB+tYxOfXyX7DaPXQDZrR5s1k7umrkG3Yd2+QDfSrYFlC7oc0IqeUns6RqSjNkERXeLw==
 
 require-directory@^2.1.1:
   version "2.1.1"
