@@ -1,4 +1,4 @@
-import { keys, map, pipe } from 'remeda'
+import { map, pipe, values } from 'remeda'
 import { formatList } from '@hbauer/convenience-functions'
 import { safeFetch } from './utils/safe-fetch.js'
 import { DiscordChannel } from './DiscordChannel.js'
@@ -60,24 +60,9 @@ export class Discord {
    * @param {string} content
    * @returns {Promise<boolean>}
    */
-  async send(channel, content) {
+  send(channel, content) {
     this.#validateChannel(channel)
-
-    const body = {
-      username: this.#channels[channel]?.username,
-      avatar_url: this.#channels[channel]?.avatar,
-      content,
-    }
-
-    const init = {
-      method: 'post',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(body),
-    }
-
-    await safeFetch(this.#channels[channel].url, init)
-
-    return true
+    return this.#channels[channel].send(content)
   }
 
   /**
@@ -87,8 +72,8 @@ export class Discord {
     return Promise.all(
       pipe(
         this.#channels,
-        keys,
-        map(name => this.send(name, content))
+        values,
+        map(channel => channel.send(content))
       )
     )
   }
